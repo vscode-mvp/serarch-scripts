@@ -1,6 +1,6 @@
-async function getApi() {
+async function getApi(url) {
   try {
-  const response = await fetch()
+  const response = await fetch(url)
   if (!response.ok) {
     throw new Error()
   }
@@ -13,16 +13,16 @@ async function getApi() {
 }
 function searchOnParams(DATA, param1, param2) {
   if (param1 && param2 && param1 in DATA && param2 in DATA) {
-    console.log( DATA[param1], DATA[param2] )
+    console.log( `${param1}: ${DATA[param1]}, ${param2}: ${DATA[param2]}` )
     return [ DATA[param1], DATA[param2] ]
   }
   if (param1 && param1 in DATA) {
-    console.log(DATA[param1])
+    console.log(`${param1}: ${DATA[param1]}`)
     return DATA[param1]
   }
   else {
     console.log('ПАРАМЕТРЫ УКАЗАНЫ НЕВЕРНО')
   }
 }
-const currentData = await getApi()
-searchOnParams(currentData, 'id')
+const currentData = await getApi('your-url')
+searchOnParams(currentData, 'param1', 'param2')
